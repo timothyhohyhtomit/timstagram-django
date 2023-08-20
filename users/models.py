@@ -11,7 +11,3 @@ class Member(AbstractUser):
     is_online = models.BooleanField(default=False)
     last_seen = models.DateTimeField(default=datetime.now, blank=True)
     avatar_url = models.URLField(null=True)
-
-class Post():
-    id = models.IntegerField(primary_key=True)
-    author = models.ForeignKey("Member", null=True, on_delete=models.SET_NULL)
