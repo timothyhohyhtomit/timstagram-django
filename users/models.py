@@ -12,3 +12,4 @@ class Member(AbstractUser):
     last_seen = models.DateTimeField(default=datetime.utcnow, blank=True)
     avatar_url = models.URLField(null=True)
     is_activated = models.BooleanField(default=True)
+
