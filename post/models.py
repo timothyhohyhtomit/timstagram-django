@@ -33,3 +33,5 @@ class PostComment(models.Model):
     member_id = models.ForeignKey("Member", on_delete=models.CASCADE)
     # if the post associated with the comment was removed, remove the comment as well
     post_id = models.ForeignKey("Post", on_delete=models.CASCADE)
+    # content of comment
+    comment = models.TextField(null=False, black=False)
