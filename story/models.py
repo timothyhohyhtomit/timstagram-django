@@ -8,17 +8,18 @@ class StoryManager(models.Manager):
         return datetime.utcnow() + timedelta(days=1)
 
 class Story(models.Model):
+    stories = StoryManager()
     id = models.IntegerField(primary_key=True)
     # if the owner of the story got removed, treat story as anonymous
-    member_id = models.ForeignKey("Member", null=True, on_delete=models.SET_NULL)
+    member_id = models.ForeignKey("users.Member", null=True, on_delete=models.SET_NULL)
     # publish datetime
     publish_at = models.DateTimeField(default=datetime.utcnow)
     # expire datetime
-    expire_at = models.DateTimeField(default=StoryManager.objects.get_expire_at)
+    expire_at = models.DateTimeField(default=stories.get_expire_at)
 
 class StoryLike(models.Model):
     id = models.IntegerField(primary_key=True)
     # if the member who issued the like got removed, treat like as anonymous
-    member_id = models.ForeignKey("Member", on_delete=models.SET_NULL)
+    member_id = models.ForeignKey("users.Member", on_delete=models.SET_NULL, null=True)
     # if the story associated with the like was removed, remove the like as well
     story_id = models.ForeignKey("Story", on_delete=models.CASCADE)
