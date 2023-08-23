@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<div class="nav">
+    <div class="nav-item">
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+    <div class="nav-item">
+        <a>Search</a>
+    </div>
+    <div class="nav-item">
+        <a>Messages</a>
+    </div>
+    <div class="nav-item">
+        <a>Create</a>
+    </div>
+    <div class="nav-item">
+        <a href="{% url 'user_profile' member_id=member_id %}">Profile</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="main">
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}
